@@ -11,7 +11,9 @@
 @import "./popular-courses";
 @import "./contact-us";
 @import "./_footer";
-
+html{
+    scroll-behavior: smooth;
+}
 //Css Reset
 *{
     margin: 0;
