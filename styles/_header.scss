@@ -1,0 +1,106 @@
+@import "./mixin";
+
+header {
+  background: rgba(255, 255, 255, 0.24);
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10.3px);
+  -webkit-backdrop-filter: blur(10.3px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  //Buraya kadar olan kodları https://css.glass/ de isteğimiz camsı yapıyı yaparak aldık.
+  @extend .flexBox; //Kod tekrarı yapmamak için style.scss içerisinde .flexBox classı oluşturduk. extend ile bu classı miras aldık.
+  padding: 27px 17px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  //Logo
+  .logo {
+    font-size: 33px;
+    font-weight: 700;
+    white-space: nowrap; //ekrana sığmadığında alt satıra atmasını istemiyoruz
+    @include laptop {
+      font-size: 25px;
+    }
+
+    @include tablet {
+      font-size: 20px;
+    }
+    span {
+      color: $main-color;
+    }
+  }
+  //Navigation
+  nav {
+    @include laptop {
+      display: none !important;
+    }
+    @extend .flexBox;
+    li {
+      margin: 15px 22px;
+      a {
+        font-size: $p-font;
+        font-weight: 500;
+        text-transform: uppercase;
+        display: block; // scale gerçekleşmesi için yaptın inlice elementte işe yaramıyor yoksa
+        @extend .transition;
+        &:hover {
+          transform: scale(1.1);
+          color: $main-color;
+        }
+      }
+    }
+  }
+//Navigation Active Classı eklenirse
+  nav.active{
+    display: block !important;
+    position: fixed;
+    right: 10px;
+    top: 120%;
+    display: flex !important;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.24);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.3px);
+    -webkit-backdrop-filter: blur(10.3px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 20px;
+  }
+  //Right
+  .header-right {
+    @extend .flexBox;
+    a {
+      @include tablet {
+        display: none !important;
+      }
+      font-size: 20px;
+      margin: 0 18px 0 5px;
+      cursor: pointer;
+      @extend .transition;
+      &:hover {
+        color: $main-color;
+        transform: translateY(-4px);
+      }
+
+      &:first-child {
+        font-size: $p-font;
+        margin-right: 20px;
+      }
+    }
+    #menu-btn {
+      font-size: 20px;
+      display: none;
+      cursor: pointer;
+      @extend .transition;
+      &:hover {
+        color: $main-color;
+        transform: translateY(-4px);
+      }
+      @include laptop {
+        display: block !important;
+      }
+    }
+  }
+}
